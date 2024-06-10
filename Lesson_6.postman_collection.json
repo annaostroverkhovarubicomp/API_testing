@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "f1c524f4-c335-4e04-973e-9406050ef452",
+		"name": "Lesson_6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35166448"
+	},
+	"item": [
+		{
+			"name": "Get Goal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pk_74465148_QXGK6WSO3DX5I7H8OSFMYN4SQGG31C68"
+					}
+				],
+				"url": {
+					"raw": "https://api.clickup.com/api/v2/team/9015696261/goal?include_completed=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"team",
+						"9015696261",
+						"goal"
+					],
+					"query": [
+						{
+							"key": "include_completed",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Goal (name)_set coll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"goal_id\", jsonData.goal.id);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pk_74465148_QXGK6WSO3DX5I7H8OSFMYN4SQGG31C68"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Test Goal Name {{$randomCity}}\"\r\n    //\"due_date\": 1568036964079,\r\n   // \"description\":\"test\",\r\n   // \"multiple_owners\": true,\r\n    //\"color\": \"#32a852\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.clickup.com/api/v2/team/9015696261/goal",
+					"protocol": "https",
+					"host": [
+						"api",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"team",
+						"9015696261",
+						"goal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Goal_ name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"125\", \"Chromium\";v=\"125\", \"Not.A/Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNiVkFxWkNGdVJBPSJ9.eyJ1c2VyIjo3NDQ2NTE0OCwidmFsaWRhdGVkIjp0cnVlLCJ3c19rZXkiOiIyNDMxMTc3OTMwIiwic2Vzc2lvbl90b2tlbiI6dHJ1ZSwiaWF0IjoxNzE3OTI2NzAyLCJleHAiOjE3MTgwOTk1MDJ9.DDSe4eE8KsMz8CkQLkAkckrrrbVETlteLnOBs3nNP80"
+					},
+					{
+						"key": "X-Workspace-ID",
+						"value": "9015696261"
+					},
+					{
+						"key": "X-Build-Git-Sha-Short",
+						"value": "168c0ee"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "sessionId",
+						"value": "okjf9prvo"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Referer",
+						"value": "https://app.clickup.com/9015696261/goals/1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "X-CSRF",
+						"value": "1"
+					},
+					{
+						"key": "build-version",
+						"value": "3.29.2"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":\"64cb6882-ad06-49f9-8dbe-98fe43fed411\",\"name\":\"Test _10\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://prod-eu-west-1-3.clickup.com/goals/v1/team/9015696261/goal/{{goal_id}}",
+					"protocol": "https",
+					"host": [
+						"prod-eu-west-1-3",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"goals",
+						"v1",
+						"team",
+						"9015696261",
+						"goal",
+						"{{goal_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Goal",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pk_74465148_QXGK6WSO3DX5I7H8OSFMYN4SQGG31C68"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Updated Goal Name\",\r\n    \"due_date\": 1568036964079,\r\n    \"description\": \"Updated Goal Description\",\r\n    \"color\": \"#32a852\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.clickup.com/api/v2/goal/64cb6882-ad06-49f9-8dbe-98fe43fed411",
+					"protocol": "https",
+					"host": [
+						"api",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"goal",
+						"64cb6882-ad06-49f9-8dbe-98fe43fed411"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Goal_Description",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pk_74465148_QXGK6WSO3DX5I7H8OSFMYN4SQGG31C68"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Updated Goal Name\",\r\n    \"due_date\": 1568036964079,\r\n    \"description\": \"Updated Goal Description\",\r\n    \"color\": \"#32a852\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.clickup.com/api/v2/goal/64cb6882-ad06-49f9-8dbe-98fe43fed411",
+					"protocol": "https",
+					"host": [
+						"api",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"goal",
+						"64cb6882-ad06-49f9-8dbe-98fe43fed411"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Key Result_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"key_id\", jsonData.key_result.key_result_id);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pk_74465148_QXGK6WSO3DX5I7H8OSFMYN4SQGG31C68"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"New Key Result Name\",\r\n    \"type\": \"number\",\r\n    \"steps_start\": 0,\r\n    \"steps_end\": 5,\r\n    \"unit\": \"km\",\r\n    \"task_ids\": [],\r\n    \"list_ids\": []\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.clickup.com/api/v2/goal/{{goal_id}}/key_result",
+					"protocol": "https",
+					"host": [
+						"api",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"goal",
+						"{{goal_id}}",
+						"key_result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Key Result",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pk_74465148_QXGK6WSO3DX5I7H8OSFMYN4SQGG31C68"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"steps_current\": 5,\r\n    \"note\": \"Test 2\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.clickup.com/api/v2/key_result/{{keyl_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"key_result",
+						"{{keyl_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Del Key Result",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pk_74465148_QXGK6WSO3DX5I7H8OSFMYN4SQGG31C68"
+					}
+				],
+				"url": {
+					"raw": "https://api.clickup.com/api/v2/key_result/{{goal_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"key_result",
+						"{{goal_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Goal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pk_74465148_QXGK6WSO3DX5I7H8OSFMYN4SQGG31C68"
+					},
+					{
+						"key": "Content-Type",
+						"value": "\"application/json\""
+					}
+				],
+				"url": {
+					"raw": "https://api.clickup.com/api/v2/goal/{{goal_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"clickup",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"goal",
+						"{{goal_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "goal_id",
+			"value": ""
+		},
+		{
+			"key": "key_id",
+			"value": ""
+		}
+	]
+}
